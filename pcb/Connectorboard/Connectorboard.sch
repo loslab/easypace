@@ -1,0 +1,209 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 6096B39B
+P 1600 1250
+F 0 "J1" H 1650 1350 50  0000 R CNN
+F 1 "Conn_01x02" V 1700 1400 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical" H 1600 1250 50  0001 C CNN
+F 3 "~" H 1600 1250 50  0001 C CNN
+	1    1600 1250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 6096E396
+P 1700 1500
+F 0 "#PWR01" H 1700 1250 50  0001 C CNN
+F 1 "GND" H 1850 1400 50  0000 C CNN
+F 2 "" H 1700 1500 50  0001 C CNN
+F 3 "" H 1700 1500 50  0001 C CNN
+	1    1700 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 6096FC93
+P 1600 1700
+F 0 "R1" H 1750 1650 50  0000 R CNN
+F 1 "100" H 1750 1750 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 1530 1700 50  0001 C CNN
+F 3 "~" H 1600 1700 50  0001 C CNN
+	1    1600 1700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1600 1550 1600 1450
+$Comp
+L Connector_Generic:Conn_01x02 J2
+U 1 1 60974257
+P 2200 1250
+F 0 "J2" H 2250 1350 50  0000 R CNN
+F 1 "Conn_01x02" V 2300 1400 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical" H 2200 1250 50  0001 C CNN
+F 3 "~" H 2200 1250 50  0001 C CNN
+	1    2200 1250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 6097425D
+P 2300 1500
+F 0 "#PWR02" H 2300 1250 50  0001 C CNN
+F 1 "GND" H 2450 1400 50  0000 C CNN
+F 2 "" H 2300 1500 50  0001 C CNN
+F 3 "" H 2300 1500 50  0001 C CNN
+	1    2300 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 60974264
+P 2200 1700
+F 0 "R2" H 2350 1650 50  0000 R CNN
+F 1 "100" H 2350 1750 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 2130 1700 50  0001 C CNN
+F 3 "~" H 2200 1700 50  0001 C CNN
+	1    2200 1700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2200 1550 2200 1450
+$Comp
+L Connector_Generic:Conn_01x02 J4
+U 1 1 60976929
+P 3100 1250
+F 0 "J4" H 3150 1350 50  0000 R CNN
+F 1 "Conn_01x02" V 3200 1400 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical" H 3100 1250 50  0001 C CNN
+F 3 "~" H 3100 1250 50  0001 C CNN
+	1    3100 1250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 6097692F
+P 3200 1500
+F 0 "#PWR04" H 3200 1250 50  0001 C CNN
+F 1 "GND" H 3350 1400 50  0000 C CNN
+F 2 "" H 3200 1500 50  0001 C CNN
+F 3 "" H 3200 1500 50  0001 C CNN
+	1    3200 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 60976936
+P 3100 1700
+F 0 "R3" H 3250 1650 50  0000 R CNN
+F 1 "100" H 3250 1750 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3030 1700 50  0001 C CNN
+F 3 "~" H 3100 1700 50  0001 C CNN
+	1    3100 1700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3100 1550 3100 1450
+$Comp
+L Connector_Generic:Conn_01x02 J5
+U 1 1 609773F6
+P 3600 1250
+F 0 "J5" H 3650 1350 50  0000 R CNN
+F 1 "Conn_01x02" V 3700 1400 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical" H 3600 1250 50  0001 C CNN
+F 3 "~" H 3600 1250 50  0001 C CNN
+	1    3600 1250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR05
+U 1 1 609773FC
+P 3700 1500
+F 0 "#PWR05" H 3700 1250 50  0001 C CNN
+F 1 "GND" H 3850 1400 50  0000 C CNN
+F 2 "" H 3700 1500 50  0001 C CNN
+F 3 "" H 3700 1500 50  0001 C CNN
+	1    3700 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 60977403
+P 3600 1700
+F 0 "R4" H 3750 1650 50  0000 R CNN
+F 1 "100" H 3750 1750 50  0000 R CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3530 1700 50  0001 C CNN
+F 3 "~" H 3600 1700 50  0001 C CNN
+	1    3600 1700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3600 1550 3600 1450
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J3
+U 1 1 60979029
+P 2650 2550
+F 0 "J3" V 2654 2730 50  0000 L CNN
+F 1 "Conn_02x03_Odd_Even" V 2745 2730 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 2650 2550 50  0001 C CNN
+F 3 "~" H 2650 2550 50  0001 C CNN
+	1    2650 2550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2750 2350 3600 2350
+Wire Wire Line
+	2650 2350 2650 2250
+Wire Wire Line
+	2650 2250 3100 2250
+Wire Wire Line
+	3100 2250 3100 1850
+Wire Wire Line
+	2200 1850 2200 2250
+Wire Wire Line
+	2200 2250 2550 2250
+Wire Wire Line
+	2550 2250 2550 2350
+Wire Wire Line
+	2550 2850 1600 2850
+Wire Wire Line
+	1600 2850 1600 1850
+$Comp
+L power:GND #PWR03
+U 1 1 6097C0C1
+P 2750 2900
+F 0 "#PWR03" H 2750 2650 50  0001 C CNN
+F 1 "GND" H 2900 2800 50  0000 C CNN
+F 2 "" H 2750 2900 50  0001 C CNN
+F 3 "" H 2750 2900 50  0001 C CNN
+	1    2750 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 2900 2750 2850
+Wire Wire Line
+	3700 1500 3700 1450
+NoConn ~ 2650 2850
+Wire Wire Line
+	3200 1500 3200 1450
+Wire Wire Line
+	2300 1450 2300 1500
+Wire Wire Line
+	1700 1500 1700 1450
+Wire Wire Line
+	3600 2350 3600 1850
+$EndSCHEMATC
