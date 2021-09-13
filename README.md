@@ -30,4 +30,4 @@ We are happy about any feedback on Easypace. Just tell us if you have any improv
 ### License
 Please cite Easypace if it helps you in your research.
 
-This project is licensed under a BSD 3-Clause license. See the [LICENSE.md](licence.md) file for details.
+This project is licensed under a BSD 3-Clause license. See the [LICENSE](LICENSE) file for details.
