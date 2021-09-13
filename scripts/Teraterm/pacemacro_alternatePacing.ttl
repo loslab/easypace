@@ -1,0 +1,147 @@
+; Tera Term macro for controlling pacing via Serial communication
+; as you already noticed, ";" marks a comment ;)
+
+; this sample macro displays usecase where the pacing frequencies
+; of channel 1 and channel 2 are alternated in following way:
+; pace chan 1 - both chan off - pace chan 2 - both chan off
+; can be e.g. used to compare response of 2 tissues where the
+; unpaced tissue acts as reference
+
+/*
+
+frequency
+
+^
+|
+|
+|                     ##########
+|                     #        #
+|                     #        #
+|*********            #        #
+|        *            #        #
+|        *            #        #
+|        *            #        #
+|        *            #        #
+|#########*#*#*#*#*#*#**********#*#*#*#*#*#*#*
+ -----------------------------------------------> time
+
+* Signal 1
+# Signal 2
+
+
+*/
+
+;########### parameter declaration ###########################
+
+; Teraterm Macro Language (TTL) provides int (Signed 16 bit, from -32768 to 32767)
+; and string as variable types
+; define duration of pacingphase in Min: TPACE_M
+; define duration of restingphase in Min: TREST_M
+; calculate phase time in sec, take care not to exceed int limit!
+
+TPACE_M = 5
+TPACE_S = TPACE_M * 60
+
+TREST_M = 5
+TREST_S = TREST_M * 60
+
+; define pacingfreqs in string array
+; number of steps: Nsteps
+; array length Nsteps
+Nsteps = 5
+strdim f1freqs Nsteps
+strdim f2freqs Nsteps
+
+f1freqs[0] = "1.0"
+f1freqs[1] = "1.2"
+f1freqs[2] = "1.5"
+f1freqs[3] = "1.7"
+f1freqs[4] = "2.0"
+
+f2freqs[0] = "2.0"
+f2freqs[1] = "1.7"
+f2freqs[2] = "1.5"
+f2freqs[3] = "1.2"
+f2freqs[4] = "1.0"
+
+; define unchanged pacing param
+; if you would like to also change them each time interval,
+; an array can be also used
+u1 = "10.0"
+u2 = "10.0"
+w1 = "50.0"
+w2 = "50.0"
+pol1 = "NEG"
+pol2 = "NEG"
+
+
+; set timeout to 200 ms -> waitln waits 200 ms after each command
+; according to http://www.softpanorama.org/Utilities/Teraterm/teraterm_macros.shtml
+; mtimeout = 200 results in 1 s + 200 ms = 1.2 s
+; waitln seems not to waitln
+; replaced with mpause mtimeout after each command
+
+mtimeout = 200
+;timeout = 1
+
+;########### macro execution ###########################
+
+dispstr "### macro is started ###" #13
+; dispstr used to write output only to console, #13 used to create newline
+
+sendln "SETREM ON"
+; places pacer into remote control mode
+mpause mtimeout
+
+; sets both channels to defined pulse pacing parameters
+
+sendln "SETF " f1freqs[0] " " f2freqs[0]
+mpause mtimeout
+sendln "SETW " w1 " " w2
+mpause mtimeout
+sendln "SETU " u1 " " u2
+mpause mtimeout
+sendln "SETPOL " pol1 " " pol2
+mpause mtimeout
+
+; check if all param set correctly
+sendln "GETPAR"
+mpause mtimeout
+
+
+for i 0 (Nsteps-1)
+    sendln "SETF " f1freqs[i] " " f2freqs[i]
+    mpause mtimeout
+    
+    ; start pacing of chan 1 with specified param
+    sendln "SETON ON OFF"
+    mpause mtimeout
+    
+    pause TPACE_S
+    
+    ; turn both off in resting phase
+    sendln "SETON OFF OFF"
+    mpause mtimeout   
+    
+    pause TREST_S
+    
+    ; start pacing of chan 2 with specified param
+    sendln "SETON OFF ON"
+    mpause mtimeout
+    
+    pause TPACE_S
+    
+    ; turn both off in resting phase
+    sendln "SETON OFF OFF"
+    mpause mtimeout  
+    
+    pause TREST_S
+
+next
+
+; check param
+sendln "GETPAR"
+mpause mtimeout
+
+dispstr "### macro is finished ###" #13
+;end of macro

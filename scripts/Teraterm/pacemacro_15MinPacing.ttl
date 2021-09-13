@@ -1,0 +1,49 @@
+; Tera Term macro for controlling pacing via Serial communication
+; as you already noticed, ";" marks a comment ;)
+
+; this sample macro displays usecase where the pacing param are specified for each channel
+; and pacing is carried out for a defined amount of time
+
+dispstr "### macro is started ###" #13
+; dispstr used to write output only to console, #13 used to create newline
+
+sendln "SETREM ON"
+; places pacer into remote control mode
+mpause mtimeout
+; wait 1 s... replace to wait for answer?
+; use waitln: waits for specified answer or timeout to occur
+; set timeout to 200 ms -> waits 200 ms after each command
+
+mtimeout = 200
+
+; sets both channels to 1.0 Hz, 50.0 ms, 10.0 V, pos pulse pacing parameter
+sendln "SETF 1.0 1.0"
+mpause mtimeout
+sendln "SETW 50.0 50.0"
+mpause mtimeout
+sendln "SETU 10.0 10.0"
+mpause mtimeout
+sendln "SETPOL POS POS"
+mpause mtimeout
+
+; check if all param set correctly
+sendln "GETPAR"
+mpause mtimeout
+
+; start pacing with specified param
+sendln "SETON ON ON"
+mpause mtimeout
+
+; pace 15 Min (= 900 s)
+pause 900
+
+; stop pacing
+sendln "SETON OFF OFF"
+mpause mtimeout
+
+; check param
+sendln "GETPAR"
+mpause mtimeout
+
+dispstr "### macro is finished ###" #13
+;end of macro

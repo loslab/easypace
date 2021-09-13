@@ -1,0 +1,103 @@
+; Tera Term macro for controlling pacing via Serial communication
+; as you already noticed, ";" marks a comment ;)
+
+; this sample macro displays usecase where the pacing frequency
+; is subsequently ramped up after elapsed interval (e.g. each day)
+; each channel is paced with frequencies specified in f1freqs or f2freqs
+
+
+;########### parameter declaration ###########################
+
+; Teraterm Macro Language (TTL) provides int (Signed 16 bit, from -32768 to 32767)
+; and string as variable types
+; define TPACE_H: duration of pacingstep in hours 
+TPACE_H = 24
+H_IN_S = 60 * 60
+;TPACE_S = TPACE_H * 60 * 60
+;take care, would exceed int limit
+
+; define pacingfreqs in string array
+; number of steps: Nsteps
+; array length -> Nsteps
+Nsteps = 5
+strdim f1freqs Nsteps
+strdim f2freqs Nsteps
+
+f1freqs[0] = "1.0"
+f1freqs[1] = "1.2"
+f1freqs[2] = "1.5"
+f1freqs[3] = "1.7"
+f1freqs[4] = "2.0"
+
+f2freqs[0] = "1.5"
+f2freqs[1] = "1.7"
+f2freqs[2] = "2.0"
+f2freqs[3] = "2.2"
+f2freqs[4] = "2.5"
+
+; define unchanged pacing param
+; if you would like to also change them each time interval,
+; an array can be also used
+u1 = "10.0"
+u2 = "10.0"
+w1 = "50.0"
+w2 = "50.0"
+pol1 = "POS"
+pol2 = "POS"
+
+
+; set timeout to 200 ms -> waitln waits 200 ms after each command
+; according to http://www.softpanorama.org/Utilities/Teraterm/teraterm_macros.shtml
+; mtimeout = 200 results in 1 s + 200 ms = 1.2 s
+mtimeout = 200
+
+;########### macro execution ###########################
+
+dispstr "### macro is started ###" #13
+; dispstr used to write output only to console, #13 used to create newline
+
+sendln "SETREM ON"
+; places pacer into remote control mode
+mpause mtimeout
+
+; sets both channels to defined pulse pacing parameters
+
+sendln "SETF " f1freqs[0] " " f2freqs[0]
+mpause mtimeout
+sendln "SETW " w1 " " w2
+mpause mtimeout
+sendln "SETU " u1 " " u2
+mpause mtimeout
+sendln "SETPOL " pol1 " " pol2
+mpause mtimeout
+
+; check if all param set correctly
+sendln "GETPAR"
+mpause mtimeout
+
+; start pacing with specified param
+sendln "SETON ON ON"
+mpause mtimeout
+
+for i 0 (Nsteps-1)
+    sendln "SETF " f1freqs[i] " " f2freqs[i]
+    mpause mtimeout
+    
+    ; pause for defined number of hours
+    for h 0 TPACE_H-1
+        pause H_IN_S
+        
+    next
+
+next
+
+; stop pacing
+sendln "SETON OFF OFF"
+mpause mtimeout
+
+; check param
+sendln "GETPAR"
+mpause mtimeout
+
+dispstr "### macro is finished ###" #13
+;end of macro
